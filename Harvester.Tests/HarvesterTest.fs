@@ -32,3 +32,8 @@ module HarvesterTest =
   [<Test>]
   let ``filter strings`` () =
     "hogefugapiyo" |> Harvester.harvest format ["og"; "api"] |> should equal (Some "h**efug***yo")
+
+  [<Test>]
+  let ``normalize fullwidth `` () =
+    "abcd０１２３12" |> Harvester.Normalize.harvest format ["12"] |> should equal (Some "abcd0**3**")
+ 
