@@ -36,4 +36,8 @@ module HarvesterTest =
   [<Test>]
   let ``normalize fullwidth `` () =
     "abcd０１２３12" |> Harvester.Normalize.harvest format ["12"] |> should equal (Some "abcd0**3**")
- 
+
+  [<TestCase("hoge", "h", true)>]
+  [<TestCase("hoge", "f", false)>]
+  let ``exist`` input dirty expected =
+    input |> Harvester.exists [dirty] |> should equal expected
